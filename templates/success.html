@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Order Success!{% endblock %}
+{% block content %}
+<div class="container my-5 text-center">
+    <div class="card mx-auto" style="max-width: 500px;">
+        <div class="card-body">
+            <div style="font-size: 80px;">🎉✅</div>
+            <h1 class="text-success mt-3">Order Confirmed!</h1>
+            <p class="lead">Your order has been placed successfully!</p>
+            <div class="alert alert-success">
+                <strong>🚚 Estimated Delivery:</strong> {{ delivery_date }}
+            </div>
+            <p>Thank you for shopping with ShopHub! ❤️</p>
+            <hr>
+            <a href="{{ url_for('products') }}" class="btn btn-primary">Continue Shopping 🛍️</a>
+            <a href="{{ url_for('index') }}" class="btn btn-outline-secondary mt-2">Go to Home 🏠</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

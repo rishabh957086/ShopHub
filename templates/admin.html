@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Admin{% endblock %}
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-white">👑 Admin Dashboard</h2>
+    
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">➕ Add New Product</div>
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('add_product') }}">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <input type="text" name="name" class="form-control" placeholder="Product Name" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <input type="number" step="0.01" name="price" class="form-control" placeholder="Price" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <input type="number" name="stock" class="form-control" placeholder="Stock" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <input type="text" name="category" class="form-control" placeholder="Category">
+                    </div>
+                    <div class="col-md-8 mb-3">
+                        <input type="url" name="image_url" class="form-control" placeholder="Image URL">
+                    </div>
+                    <div class="col-12 mb-3">
+                        <textarea name="description" class="form-control" rows="2" placeholder="Description"></textarea>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Add Product</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-header bg-primary text-white">📦 Manage Products</div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr><th>ID</th><th>Name</th><th>Price</th><th>Stock</th><th>Action</th></tr>
+                    </thead>
+                    <tbody>
+                        {% for product in products %}
+                        <tr>
+                            <td>{{ product.id }}</td>
+                            <td>{{ product.name }}</td>
+                            <td>₹{{ product.price }}</td>
+                            <td>{{ product.stock }}</td>
+                            <td><a href="{{ url_for('delete_product', product_id=product.id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Delete?')">Delete</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
